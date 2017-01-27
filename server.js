@@ -33,6 +33,28 @@ app.get('/api/urls', (req, res) => {
     })
 })
 
+app.post('/api/folders', (req, res) => {
+  const { name } = req.body
+  const id = md5(name)
+
+  const folder = {
+    id,
+    name,
+    created_at: new Date()
+  }
+
+  database('folders').insert(folder)
+    .then(() => {
+      database('folders').select()
+        .then((folders) => {
+          res.status(200).json(folders)
+        })
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+})
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is runing on ${app.get('port')}.`)
 })

@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
         short_url: 'localhost:3000/a8d7f',
         popularity: 3,
         folder_id: md5('folder1'),
-        created_at: new Date
+        created_at: new Date()
       }),
       knex('urls').insert({
         id: md5('url2'),
@@ -18,7 +18,7 @@ exports.seed = function(knex, Promise) {
         short_url: 'localhost:3000/dfh57',
         popularity: 5,
         folder_id: md5('folder1'),
-        created_at: new Date
+        created_at: new Date()
       }),
       knex('urls').insert({
         id: md5('url3'),
@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
         short_url: 'localhost:3000/dhd45',
         popularity: 1,
         folder_id: md5('folder2'),
-        created_at: new Date
+        created_at: new Date()
       })
     ])
   })
