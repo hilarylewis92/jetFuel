@@ -8,7 +8,8 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      folders: []
+      folders: [],
+      folderName: '',
     }
   }
 
@@ -31,6 +32,22 @@ class App extends Component {
     })
   }
 
+  handleFolderSubmit() {
+    fetch('http://localhost:3000/api/folders', {
+      headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify({
+        name: this.state.folderName,
+      })
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
+
 
   render() {
     const { folders } = this.state
@@ -46,28 +63,35 @@ class App extends Component {
             src="./icons/transport-2.svg"
             alt="rocket ship"
           />
-          <form>
-            <label
-              htmlFor="folder-label">
-              Add a new folder to house similar URLs:
-            </label>
-            <input
-              id="folder-input"
-              placeholder="Full URL folder...">
-            </input>
-            <button
-              className="folder-submit-button"
-              type="submit">
-              Submit
-            </button>
-          </form>
+        <form>
+          <label
+            htmlFor="folder-label">
+            Add a new folder to house similar URLs:
+          </label>
+          <input
+            id="folder-input"
+            placeholder="Full URL folder..."
+            onChange={(e) => this.setState({
+              folderName: e.target.value,
+              })
+            }
+          >
+          </input>
+          <button
+            className="folder-submit-button"
+            type="submit"
+            onClick={() => this.handleFolderSubmit() }
+          >
+            Submit
+          </button>
+        </form>
 
-          <ul
-            id="folders-container">
-            <Folders
-              folders={folders}
-            />
-          </ul>
+        <ul
+          id="folders-container">
+          <Folders
+            folders={folders}
+          />
+        </ul>
       </div>
     );
   }
