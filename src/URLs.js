@@ -61,8 +61,8 @@ class URLs extends Component {
                 </a>
               </td>
               <td>
-                <a href={`http://${url.short_url}`}>
-                  {url.short_url}
+                <a href={`${window.location.origin}/${url.short_url}`}>
+                  { window.location.origin }/{ url.short_url }
                 </a>
               </td>
               <td>
