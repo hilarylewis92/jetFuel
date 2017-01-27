@@ -43,11 +43,6 @@ app.get('/:shortUrlId', (req, res) => {
   const { shortUrlId } = req.params
   database('urls').select()
     .then(urls => urls.filter(urlContent => urlContent.id.slice(0, 5) === shortUrlId))
-    .then(targetUrl => {
-      database('urls').where('short_url', `localhost:3000/${shortUrlId}`)
-      .update({ popularity: 'targetUrl[0].popularity+1' })
-      return targetUrl
-    })
     .then((targetUrl) => res.redirect(targetUrl[0].long_url))
 })
 
