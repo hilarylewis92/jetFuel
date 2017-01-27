@@ -78,7 +78,7 @@ app.post('/api/folders', (req, res) => {
 app.post('/api/urls', (req, res) => {
   const { long_url, folder_id } = req.body
   const id = md5(long_url)
-  const short_url = folder_id.slice(0, 5)
+  const short_url = id.slice(0, 5)
 
   const urlContent = {
     id,
