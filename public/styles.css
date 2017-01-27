@@ -2,12 +2,15 @@
 font-family: 'Lato', sans-serif;
 font-family: 'Arsenal', sans-serif;*/
 
-body, *, html {
+body, * html {
   font-family: 'Arsenal', sans-serif;
-  background-color: #000000;
-  color: #fcdd55;
   align-items: center;
   justify-content: center;
+}
+
+body {
+  background-color: #000000;
+  color: #fcdd55;
 }
 
 .title {
@@ -62,6 +65,7 @@ li {
 }
 
 #folder-input, .url-input {
+  color: black;
   align-items: center;
   margin: 10px auto;
   width: 200px;
