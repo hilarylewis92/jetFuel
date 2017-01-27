@@ -1,44 +1,79 @@
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'test'
 
-var chai = require('chai');
-var should = chai.should();
-var chaiHttp = require('chai-http');
-var server = require('../app');
+var chai = require('chai')
+var should = chai.should()
+var chaiHttp = require('chai-http')
+var server = require('../server.js')
 
-chai.use(chaiHttp);
+chai.use(chaiHttp)
 
-describe('GET /api/folders', () => {
-  it('should return all folders', (done) => {
+describe('GET /api/folders', function() {
+  it('should return all folders', function(done) {
     chai.request(server)
     .get('/api/folders')
     .end(function(err, res) {
-      res.should.have.status(200);
-      res.should.be.json; // jshint ignore:line
-      res.body.should.be.a('object');
-      res.body.length.should.be.eql(2); //for folders content length
-      res.body.should.have.property('wowow');
-    done();
-    });
-  });
-});
-
-describe('POST /api/folders', () => {
-  it('should return all folders', (done) => {
-    chai.request(server)
-    .post('/api/folders')
-    .send(folder)
-    .end((err, res) => {
       res.should.have.status(200)
       res.should.be.json // jshint ignore:line
       res.body.should.be.a('object')
       res.body.length.should.be.eql(2) //for folders content length
-      res.body.should.have.property('wowow')
-      res.body.should.have.property('message').eql('Book successfully added!')
-      res.body.book.should.have.property('title')
-      res.body.book.should.have.property('author')
-      res.body.book.should.have.property('pages')
-      res.body.book.should.have.property('year')
-    done();
-    });
-  });
-});
+      res.body.should.have.property('Music')
+    done()
+    })
+  })
+})
+
+describe('POST /api/folders', function() {
+  it('should return all folders', function(done) {
+    let newFolder = {
+      name: "Music"
+    }
+
+    chai.request(server)
+    .post('/api/folders')
+    .send(newFolder)
+    .end(function(err, res) {
+      res.should.have.status(200)
+      res.should.be.json // jshint ignore:line
+      res.body.should.be.a('object')
+      res.body.length.should.be.eql(3) //for folders content length
+      res.body.should.have.property('Music')
+      res.body.book.should.have.property('http://google.com')
+    done()
+    })
+  })
+})
+
+describe('GET /api/urls', function() {
+  it('should return all folders', function(done) {
+    chai.request(server)
+    .get('/api/folders')
+    .end(function(err, res) {
+      res.should.have.status(200)
+      res.should.be.json // jshint ignore:line
+      res.body.should.be.a('object')
+      res.body.length.should.be.eql(3) //for folders content length
+    done()
+    })
+  })
+})
+
+describe('POST /api/urls', function() {
+  it('should return all folders', function(done) {
+    let newURL = {
+      short_url: `localhost:3000/${md5('url1').slice(0,5)}`,
+      long_url: 'http://google.com',
+      created_at: new Date(),
+      folder_id: md5('folder_id')
+    }
+
+    chai.request(server)
+    .post('/api/folders')
+    .send(newURL)
+    .end(function(err, res) {
+      res.should.have.status(200)
+      res.should.be.json // jshint ignore:line
+      res.body.should.be.a('object')
+    done()
+    })
+  })
+})
