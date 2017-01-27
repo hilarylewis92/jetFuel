@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const md5 = require('md5')
-const path = require("path")
+const path = require('path')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -14,6 +14,7 @@ app.use(function (req, res, next) {
 })
 
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
+
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
