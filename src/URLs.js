@@ -25,7 +25,7 @@ class URLs extends Component {
                 </a>
               </td>
               <td>
-                <a href={url.long_url}>
+                <a href={`http://${url.short_url}`}>
                   {url.short_url}
                 </a>
               </td>
