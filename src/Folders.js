@@ -75,7 +75,12 @@ class Folders extends Component {
                     })
                   }>
                 </input>
-                <button className="url-submit-button" type="submit" onClick={(e) => this.handleURLSubmmit(e) }>Submit</button>
+                <button
+                  className="url-submit-button"
+                  type="submit"
+                  onClick={(e) => this.handleURLSubmmit(e) }>
+                  Submit
+                </button>
               </form>
 
               <URLs
