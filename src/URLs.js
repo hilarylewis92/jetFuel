@@ -5,7 +5,8 @@ class URLs extends Component {
   constructor(){
     super()
     this.state = {
-      sortedURLs: []
+      sortedURLs: [],
+      sortAsc: true
     }
   }
 
@@ -20,12 +21,23 @@ class URLs extends Component {
       const leftTimeStamp = moment(leftURL.created_at).unix()
       const rightTimeStamp = moment(rightURL.created_at).unix()
 
-      return leftTimeStamp - rightTimeStamp 
+      if(this.state.sortAsc){
+        return rightTimeStamp - leftTimeStamp
+      } else {
+        return leftTimeStamp - rightTimeStamp
+      }
     })
 
     this.setState({
       sortedURLs
     })
+  }
+
+  toggleSort() {
+    this.setState ({
+      sortAsc: !this.state.sortAsc
+    })
+    this.sortURLs()
   }
 
   render(){
@@ -36,7 +48,7 @@ class URLs extends Component {
         <tr className="table-header">
           <th>URL</th>
           <th>Shortened URL</th>
-          <th>Created At:</th>
+          <th onClick={() => this.toggleSort()}>Created At:</th>
           <th>Number of Visits</th>
         </tr>
 
