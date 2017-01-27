@@ -38,6 +38,17 @@ app.get('/api/urls', (req, res) => {
     })
 })
 
+app.get('/:shortUrlId', (req, res) => {
+  const { shortUrlId } = req.params
+  database('urls').select()
+    .then(urls => urls.filter(urlContent => urlContent.id.slice(0, 5) === shortUrlId))
+    .then(targetUrl => res.redirect(targetUrl[0].long_url))
+    .catch(err => {
+      console.log(err)
+      res.status(404)
+    })
+})
+
 app.post('/api/folders', (req, res) => {
   const { name } = req.body
   const id = md5(name)
