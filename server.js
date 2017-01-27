@@ -13,11 +13,11 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use(express.static(path.resolve(__dirname, '..', 'build')));
+app.use(express.static(path.resolve(__dirname, '..', 'build')))
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
-});
+  res.sendFile(path.resolve(__dirname, '.', 'build', 'index.html'))
+})
 
 app.set('port', process.env.PORT || 3000)
 app.locals.title = 'Jet Fuel'
