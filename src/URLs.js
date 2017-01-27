@@ -9,7 +9,7 @@ class URLs extends Component {
 
   render(){
     return (
-      <table id="table-${folder.id}">
+      <table className="table-container" id="table-${folder.id}">
         <tr className="table-header">
           <th>URL</th>
           <th>Shortened URL</th>
