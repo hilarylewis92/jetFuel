@@ -79,7 +79,7 @@ class Folders extends Component {
               </form>
 
               <URLs
-                urls = {urls}
+                urls = {urls.filter((url) => url.folder_id === folder.id)}
               />
             </li>
           )
