@@ -44,7 +44,7 @@ class URLs extends Component {
     const { sortedURLs } = this.state
 
     return (
-      <table id="table-${folder.id}">
+      <table className="table-container" id="table-${folder.id}">
         <tr className="table-header">
           <th>URL</th>
           <th>Shortened URL</th>
@@ -61,8 +61,8 @@ class URLs extends Component {
                 </a>
               </td>
               <td>
-                <a href={`http://${url.short_url}`}>
-                  {url.short_url}
+                <a href={`${window.location.origin}/${url.short_url}`}>
+                  { window.location.origin }/{ url.short_url }
                 </a>
               </td>
               <td>

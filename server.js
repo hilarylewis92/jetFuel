@@ -78,8 +78,7 @@ app.post('/api/folders', (req, res) => {
 app.post('/api/urls', (req, res) => {
   const { long_url, folder_id } = req.body
   const id = md5(long_url)
-  const uri = 'http://localhost:3000/'
-  const short_url = createShortURL(id, uri)
+  const short_url = folder_id.slice(0, 5)
 
   const urlContent = {
     id,
@@ -101,10 +100,6 @@ app.post('/api/urls', (req, res) => {
       console.error(err)
     })
 })
-
-const createShortURL = (id, uri) => {
-  return `${uri.slice(7, uri.length)}${id.slice(0,5)}`
-}
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is runing on ${app.get('port')}.`)
