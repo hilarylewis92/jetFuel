@@ -7,8 +7,10 @@ var server = require('../server.js')
 
 chai.use(chaiHttp)
 
+
 //These tests are failing because of a "TypeError: app.address is not a function"
 //This is most likely a chaiHTTP issue, unknown
+
 
 describe('GET /api/folders', function() {
   it('should return all folders', function(done) {
@@ -76,6 +78,9 @@ describe('POST /api/urls', function() {
       res.should.have.status(200)
       res.should.be.json
       res.body.should.be.a('object')
+      res.body.length.should.be.eql(3) //for folders content length
+      res.body.should.have.property('Music')
+      res.body.book.should.have.property('http://google.com')
     done()
     })
   })

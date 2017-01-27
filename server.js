@@ -102,5 +102,5 @@ app.post('/api/urls', (req, res) => {
 })
 
 app.listen(app.get('port'), () => {
-  console.log(`${app.locals.title} is runing on ${app.get('port')}.`)
+  console.log(`${app.locals.title} is running on ${app.get('port')}.`)
 })
