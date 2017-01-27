@@ -25,8 +25,7 @@ class URLs extends Component {
                 </a>
               </td>
               <td>
-                <a href={url.long_url}
-                  onClick={() => {handlePopularityClick()}}>
+                <a href={url.long_url}>
                   {url.short_url}
                 </a>
               </td>
