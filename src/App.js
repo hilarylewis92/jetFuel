@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/folders', {
+    fetch('/api/folders', {
       headers: {
        'Accept': 'application/json',
        'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   handleFolderSubmit() {
-    fetch('http://localhost:3000/api/folders', {
+    fetch('/api/folders', {
       headers: {
        'Accept': 'application/json',
        'Content-Type': 'application/json'
