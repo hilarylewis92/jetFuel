@@ -1,7 +1,37 @@
 import React, { Component } from 'react';
 
+import URLs from './URLs'
+
 class Folders extends Component {
+  constructor(){
+    super()
+    this.state = {
+      urls: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/api/urls', {
+      headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+      },
+      method: 'get'
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      this.setState({
+        urls: res
+      })
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
+
   render(){
+    const { urls } = this.state
+
     return (
       <div>
         {this.props.folders.map(folder => {
@@ -24,7 +54,9 @@ class Folders extends Component {
                   <th>URL</th>
                   <th>Shortened URL</th>
                 </tr>
-
+                <URLs
+                  urls = {urls}
+                />
 
               </table>
             </li>
