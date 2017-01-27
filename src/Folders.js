@@ -31,10 +31,8 @@ class Folders extends Component {
     })
   }
 
-  handleURLInput(e) {
-    e.preventDefault()
-    console.log('id', this.state.folderID)
-    console.log('url', this.state.longURL)
+  handleURLSubmmit(e) {
+    // e.preventDefault()
     fetch('http://localhost:3000/api/urls', {
       headers: {
        'Accept': 'application/json',
@@ -77,7 +75,7 @@ class Folders extends Component {
                     })
                   }>
                 </input>
-                <button className="url-submit-button" type="submit" onClick={(e) => this.handleURLInput(e) }>Submit</button>
+                <button className="url-submit-button" type="submit" onClick={(e) => this.handleURLSubmmit(e) }>Submit</button>
               </form>
 
               <URLs
