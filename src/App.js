@@ -1,7 +1,40 @@
 import React, { Component } from 'react';
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
+
+import Folders from './Folders'
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      folders: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/api/folders', {
+      headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+      },
+      method: 'get'
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      this.setState({
+        folders: res
+      })
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
+
+
   render() {
+    const { folders } = this.state
+
     return (
       <div className="App">
         <h1
@@ -31,6 +64,9 @@ class App extends Component {
 
           <ul
             id="folders-container">
+            <Folders
+              folders={folders}
+            />
           </ul>
       </div>
     );
