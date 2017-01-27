@@ -23,6 +23,16 @@ app.get('/api/folders', (req, res) => {
     })
 })
 
+app.get('/api/urls', (req, res) => {
+  database('urls').select()
+    .then((urls) => {
+      res.status(200).json(urls)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+})
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is runing on ${app.get('port')}.`)
 })
