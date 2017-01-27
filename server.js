@@ -37,13 +37,13 @@ app.post('/api/folders', (req, res) => {
   const { name } = req.body
   const id = md5(name)
 
-  const folder = {
+  const folderContent = {
     id,
     name,
     created_at: new Date()
   }
 
-  database('folders').insert(folder)
+  database('folders').insert(folderContent)
     .then(() => {
       database('folders').select()
         .then((folders) => {
@@ -54,6 +54,37 @@ app.post('/api/folders', (req, res) => {
       console.error(err)
     })
 })
+
+app.post('/api/urls', (req, res) => {
+  const { long_url, folder_id } = req.body
+  const id = md5(long_url)
+  const uri = 'http://localhost:3000/'
+  const short_url = createShortURL(id, uri)
+
+  const urlContent = {
+    id,
+    long_url,
+    short_url,
+    popularity: 0,
+    folder_id,
+    created_at: new Date()
+  }
+
+  database('urls').insert(urlContent)
+    .then(() => {
+      database('urls').select()
+        .then((urls) => {
+          res.status(200).json(urls)
+        })
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+})
+
+const createShortURL = (id, uri) => {
+  return `${uri.slice(7, uri.length)}${id.slice(0,5)}`
+}
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is runing on ${app.get('port')}.`)
