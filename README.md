@@ -10,6 +10,12 @@ The secondary goal was to track URL usage and provide popularity statistics.
 
 ---
 
+[Original Assignment](http://frontend.turing.io/projects/jet-fuel.html)
+
+[Live Version](https://jetfuelshortener.herokuapp.com/)
+
+---
+
 ####We considered 3 main criteria, each with questions to guide the application's design and implementation: 
 
 ###1. Code Clarity
